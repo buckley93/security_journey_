@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Shopping Cart</h1>
+        <a href="/product" class="btn btn-primary">Continue Shopping</a>
+        <form action="/checkout" method="post">
+            {% if cart %}
+            <ul>
+                {% for item in cart %}
+                <li>{{ item.name }} - {{ item.price }}</li>
+                <input type="hidden" name="id" value="{{ item.id }}">
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Your cart is currently empty.</p>
+            {% endif %}
+            <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+        </form>
+        <form action="/clear_cart" method="post">
+            <button type="submit" class="btn btn-danger">Clear Cart</button>
+        </form>
+        {% if bought %}
+        <div class="mt-5">
+            <ul>
+                <h2>Purchased Items</h2>
+                {% for item in bought %}
+                <li>{{ item.name }} - {{ item.price }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

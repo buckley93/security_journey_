@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5" style="text-align: center;">
+        <form action="/clear_email" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+        <h1>Product List</h1>
+        {% for i in product %}
+            <form action="/buy" method="post">
+                <p>{{i.name}} - {{i.price}}</p>
+                <input type="hidden" name="product_id" value="{{i.id}}">
+                <input type="hidden" name="price" value="{{i.price}}">
+                <button type="submit">Buy</button>
+            </form>
+        {% endfor %}
+    </div>
+</body>
+</html>
