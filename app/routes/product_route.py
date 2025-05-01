@@ -9,7 +9,10 @@ from app.services.product_service import ProductServices
 from starlette.middleware.sessions import SessionMiddleware
 from app.database import get_db
 import stripe
-stripe.api_key = "sk_test_51RJOO3JzIoLBrAATebqgDy8fOL2y08IvSTFfPx2Pbc3WLT2TXsq4lKVeVDI4QuYrO7x3Fwsh6xmBvtMJ6aH7K8du00LAYcHMYR"
+import os
+from dotenv import load_dotenv
+load_dotenv()
+stripe.api_key = os.getenv("STRIPE_KEY")
 
 def process_payment(amount, currency="usd", source="tok_visa"):
     try:
